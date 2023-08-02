@@ -1,0 +1,30 @@
+logging:
+  file:
+    name: F:/LogFiles/emp-redis-app.log
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/redis_db
+    username: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  cache:
+    type: redis
+employee-app:
+  messages:
+    employee-not-found: "Employee Not Found With Id : %s"
+    employee-deletion-succeeded: "Employee Deleted Successfully With Id : "    

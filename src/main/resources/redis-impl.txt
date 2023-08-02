@@ -1,0 +1,58 @@
+
+Redis Cache:
+------------
+
+-> Cache is the Temporary Memory & which exists between an Application and Database.
+-> Which used to Reduce the No.of Network calls between Application and Database.
+-> We can Use Redis as Cache.
+-> Implement the Cache Concept in One or Two Modules only
+-> Implement the Cache for mostly used Operations only.
+
+@Cacheable: When we Trying to Fetch the Data from Database, 
+			First it will store an Object into Cache first, 
+			then only send that Object Back to the Client.
+
+@CachePut:  When we Update the Data in the Database, 
+			then that data will be Updated in the Cache also.
+
+@CacheEvict: When we Delete the Data in the Database, 
+			then that data will be removed in the Cache also.
+
+Steps to Implement Cache in SpringBoot:
+=======================================
+
+1. Create the SpringBoot Project using Dep: 
+	spring-web,spring-data-jpa,mysql-driver,lombok,spring-boot-devtools,actuator
+
+2. Add Datasource, Jpa and Actuator Properties in properties file
+
+3. Perform CURD Operations 
+
+4. Test the APIs using POSTMAN TOOL. [no.of req = no.of n/w calls w.r.t DB]
+
+_____________________________________________________________________
+
+5. Add 'spring-data-redis' dependency to the Project
+
+6. Add '@EnableCaching' at starter class Level
+
+7. Add below Property in Properties file:
+
+      spring.cache.type=redis
+      
+8. Entity Class Must be Implements From Serializable Interface as follows :
+
+		public class Employee implements Serializable{ .. }
+
+9. Add @Cacheable on top of getEmployeeById() method
+
+10. Add @CachePut on top of updateEmployee() method
+
+11. Add @CacheEvict on top of deleteEmployee() method
+
+12. Start the Redis Server [double click on : 'redis-server.exe']
+
+13. Start the SpringBoot Application
+
+14. Test the APIs using POSTMAN TOOL. [no.of req = less n/w calls]
+
