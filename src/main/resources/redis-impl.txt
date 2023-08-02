@@ -45,10 +45,28 @@ _____________________________________________________________________
 		public class Employee implements Serializable{ .. }
 
 9. Add @Cacheable on top of getEmployeeById() method
+	@Cacheable(value="employee",key="#employeeId")
+	Note: 'key' must be same with method argument like:
+
+		@Cacheable(value="employee",key="#employeeId")
+		public Employee getEmployeeById(Integer employeeId){
+			//Logic
+		}
 
 10. Add @CachePut on top of updateEmployee() method
 
+		@CachePut(value="employee",key="#employeeId")
+		public Employee updateEmployee(Integer employeeId,Employee e){
+			//Logic
+		}
+
 11. Add @CacheEvict on top of deleteEmployee() method
+
+		//@CacheEvict(value="employee",key="#employeeId")
+		@CacheEvict(value="employee",allEntries=true) //If we used Collections / Multiplicity
+		public Employee updateEmployee(Integer employeeId,Employee e){
+			//Logic
+		}
 
 12. Start the Redis Server [double click on : 'redis-server.exe']
 
